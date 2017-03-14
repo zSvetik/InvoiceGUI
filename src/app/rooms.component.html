@@ -1,0 +1,24 @@
+<h2>Invoice rooms</h2>
+<div>
+  <label>Room owner:</label> <input #roomOwner />
+  <button (click)="add(roomArea.value, roomGuests.value); roomArea.value='1'; roomGuests.value='1'">
+    Add
+  </button>
+</div>
+<ul class="rooms">
+  <li *ngFor="let room of rooms" (click)="onSelect(room)"
+      [class.selected]="room === selectedRoom">
+    <span>{{room.id}}</span>
+    <span>{{room.owner}}</span>
+    <span>{{room.guests}}</span>
+    <span>{{user.area}}</span>
+    <button class="delete"
+            (click)="delete(room); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+<div *ngIf="selectedRoom">
+  <h2>
+    {{selectedRoom.owner | uppercase}} {{selectedRoom.guests | uppercase}} {{selectedRoom.area | uppercase}} is current room
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>

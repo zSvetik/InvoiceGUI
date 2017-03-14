@@ -1,0 +1,11 @@
+<h2>Login details: {{zaraza}} </h2>
+<div>
+  <label>id: </label>{{id}}</div>
+<label>owner: {{roominfo?.owner}}</label>
+<div>
+  <input [(ngModel)]="roominfo.guests" placeholder="guests" />
+  <input [(ngModel)]="roominfo.area" placeholder="area" />
+</div>
+<button (click)="goBack()">Back</button>
+<button (click)="reload()">Reload</button>
+<button (click)="save()">Save</button>

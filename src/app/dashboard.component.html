@@ -1,0 +1,9 @@
+<h3>Invoice rooms</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let room of rooms"  [routerLink]="['/detail', room.id]"  class="col-1-4">
+    <div class="rooms">
+      <h4>{{room.owner}} {{room.guests}} {{room.area}}</h4>
+    </div>
+  </a>
+</div>
+<!-- <hero-search></hero-search> -->
