@@ -30,8 +30,8 @@ export class RoomInfoService {
     return this.http.get(url,{headers: this.headers})
       .toPromise()
       .then(response =>{
-        console.log("user JSON: "+JSON.stringify(response.json()));
-        return Promise.resolve(response.json().users as RoomInfo[]);
+        console.log("room JSON: "+JSON.stringify(response.json()));
+        return Promise.resolve(response.json().roomInfoList as RoomInfo[]);
       })
       .catch(this.handleError);
   }
@@ -42,7 +42,7 @@ export class RoomInfoService {
     return this.http.get(url,{headers: this.headers}).toPromise()
       .then(response => {
         let room: RoomInfo;
-        console.log("user JSON: "+JSON.stringify(response.json()));
+        console.log("room JSON: "+JSON.stringify(response.json()));
         room = response.json().roomInfoList[0];
         console.log("Room: "+room.id)
         return Promise.resolve(room);
@@ -59,20 +59,22 @@ export class RoomInfoService {
     return this.http.post(url,data,{headers: this.headers})
       .toPromise()
       .then(response =>{
-        console.log("user create JSON: "+JSON.stringify(response.json()));
+        console.log("room create JSON: "+JSON.stringify(response.json()));
         response.json().roomInfoList[0] as RoomInfo;
       })
       .catch(this.handleError);
   }
 
-  update(room:  RoomInfo): Promise<RoomInfo> {
+  update(roomInfo:  RoomInfo): Promise<RoomInfo> {
     const url = `${this.roomsUrl}/update`;
-    let data={"user":null};
-    data.user = room;
+    let data={"roomInfo":null};
+    data.roomInfo = roomInfo;
     return this.http.post(url,data,{headers: this.headers})
       .toPromise()
-      .then(response => response.json().roomInfoList[0] as RoomInfo)
-      .catch(this.handleError);;
+      .then(response => {
+        console.log("room update JSON: "+JSON.stringify(response.json()));
+        response.json().roomInfoList[0] as RoomInfo;})
+      .catch(this.handleError);
   }
 
   delete(id: number): Promise<number> {

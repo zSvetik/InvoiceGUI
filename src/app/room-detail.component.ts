@@ -45,8 +45,8 @@ export class RoomDetailComponent implements OnInit {
   }
 
   save(): void {
-    // this.libuserService.update(this.libuser)
-    //   .then(() => this.goBack());
+    this.roominfoService.update(this.roominfo)
+       .then(() => this.goBack());
   }
 
   goBack(): void {

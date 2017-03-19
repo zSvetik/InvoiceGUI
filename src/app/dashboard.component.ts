@@ -10,12 +10,12 @@ import { RoomInfoService } from './RoomInfo.service';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-  rooms: RoomInfo[] = [];
+  rooms: RoomInfo[];
 
   constructor(private roominfoService: RoomInfoService) { }
 
   ngOnInit(): void {
     this.roominfoService.getRooms()
-      .then(roomInfoList => this.rooms = roomInfoList);
+      .then(rooms => this.rooms = rooms);
   }
 }
