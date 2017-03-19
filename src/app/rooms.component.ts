@@ -11,6 +11,7 @@ import { RoomInfoService }         from './RoomInfo.service';
   styleUrls: [ './rooms.component.css' ]
 })
 export class RoomsComponent implements OnInit {
+  roomInfo: RoomInfo = new RoomInfo();
   rooms: RoomInfo[];
   selectedRoom: RoomInfo;
 
@@ -25,16 +26,10 @@ export class RoomsComponent implements OnInit {
   }
 
   add(area: number, guests: number): void {
-    area = area;
-    guests = guests;
-    if (!area || !guests) {
-      return;
-    }
-
     let room:RoomInfo = new RoomInfo();
-    room.area = area;
-    room.guests = guests;
-
+    room.owner = this.roomInfo.owner;
+    room.area = 1;
+    room.guests = 1;
     this.roominfoService.create(room)
       .then(room => {
         this.rooms.push(room);
@@ -61,5 +56,9 @@ export class RoomsComponent implements OnInit {
 
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedRoom.id]);
+  }
+
+  reload():void {
+    this.getRooms();
   }
 }

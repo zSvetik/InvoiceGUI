@@ -1,7 +1,7 @@
 <h2>Invoice rooms</h2>
 <div>
-  <label>Room owner:</label> <input #roomOwner />
-  <button (click)="add(roomArea.value, roomGuests.value); roomArea.value='1'; roomGuests.value='1'">
+  <label>Room owner:</label> <input [(ngModel)]="roomInfo.owner" />
+  <button (click)="add(1, 1); reload()">
     Add
   </button>
 </div>
@@ -11,7 +11,7 @@
     <span>{{room.id}}</span>
     <span>{{room.owner}}</span>
     <span>{{room.guests}}</span>
-    <span>{{user.area}}</span>
+    <span>{{room.area}}</span>
     <button class="delete"
             (click)="delete(room); $event.stopPropagation()">x</button>
   </li>

@@ -15,7 +15,7 @@ import { RoomInfoService } from './RoomInfo.service';
 export class RoomDetailComponent implements OnInit {
 
   roominfo: RoomInfo = new RoomInfo();
-  id: number = 0;
+  id: string = "";
 
   constructor(
     private roominfoService: RoomInfoService,

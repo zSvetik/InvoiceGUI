@@ -37,7 +37,7 @@ export class RoomInfoService {
   }
 
 //example of debug of promise
-  getRoom(id: number): Promise<RoomInfo> {
+  getRoom(id: string): Promise<RoomInfo> {
     const url = `${this.roomsUrl}/byid/${id}`;
     return this.http.get(url,{headers: this.headers}).toPromise()
       .then(response => {
@@ -54,8 +54,8 @@ export class RoomInfoService {
 
   create(room:  RoomInfo): Promise<RoomInfo> {
     const url = `${this.roomsUrl}/add`;
-    let data={"room":null};
-    data.room = room;
+    let data={"roomInfo":null};
+    data.roomInfo = room;
     return this.http.post(url,data,{headers: this.headers})
       .toPromise()
       .then(response =>{
@@ -69,7 +69,8 @@ export class RoomInfoService {
     const url = `${this.roomsUrl}/update`;
     let data={"roomInfo":null};
     data.roomInfo = roomInfo;
-    return this.http.post(url,data,{headers: this.headers})
+    console.log("data update JSON: " + JSON.stringify(data));
+    return this.http.post(url, data, {headers: this.headers})
       .toPromise()
       .then(response => {
         console.log("room update JSON: "+JSON.stringify(response.json()));
@@ -77,7 +78,7 @@ export class RoomInfoService {
       .catch(this.handleError);
   }
 
-  delete(id: number): Promise<number> {
+  delete(id: string): Promise<number> {
     const url = `${this.roomsUrl}/del/${id}`;
     return this.http.get(url)
       .toPromise()

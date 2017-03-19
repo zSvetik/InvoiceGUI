@@ -1,5 +1,5 @@
 export class RoomInfo{
-  id: number;
+  id: string;
   owner: string;
   guests: number;
   area: number;
